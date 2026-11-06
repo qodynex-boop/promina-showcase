@@ -1,4 +1,4 @@
-name: Publish PROMINA Website
+name: Publish Onwan Website
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "promina-pages"
+  group: "onwan-pages"
   cancel-in-progress: true
 
 jobs:
