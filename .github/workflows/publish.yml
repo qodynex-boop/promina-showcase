@@ -1,19 +1,15 @@
 name: Publish Onwan Website
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
-  group: "onwan-pages"
+  group: onwan-pages
   cancel-in-progress: true
-
 jobs:
   deploy:
     environment:
@@ -21,14 +17,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout website
-        uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static website
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: .
-      - name: Publish to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
